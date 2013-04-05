@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+body>div{ display:none;}
+#printBox{display:block;overflow-x:hidden }
+.printField{
+   border-bottom: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #808080;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 4px 4px 0;
+    position: absolute;
+ }

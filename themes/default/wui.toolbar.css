@@ -1,0 +1,117 @@
+﻿@CHARSET "UTF-8";
+.wui-toolbar{
+	font-size:11pt;
+	padding:0 0 0 5px;
+	margin:5px 0;
+	line-height:30px;
+	height:30px;
+	vertical-align:middle;
+	position:relative;
+	clear:both;
+}
+.wui-toolbar ul{
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+.wui-toolbar li{
+	float:left;
+	cursor:pointer;
+}
+
+.wui-toolbar li.drag{
+	width:5px;
+	height:30px;
+	float:left;
+	cursor:move;
+	background:url(images/toolbar/drag.gif) no-repeat center center;
+}
+
+.wui-toolbar li.active{
+	width:8px;
+	height:30px;
+	background:url(images/toolbar/active.gif) no-repeat center center;
+}
+
+.wui-toolbar li.active:hover{
+	border:1pt solid silver;
+	width:6px;
+	height:28px;
+}
+
+.wui-toolbar li.toolbarItem{
+	width:30px;
+	height:30px;
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+
+/* .wui-toolbar li.toolbarItem.disabled{
+	filter:alpha(opacity=10);
+	opacity:0.1;
+} */
+
+.wui-toolbar li.toolbarItem:hover{
+	border:1pt solid silver;
+	width:28px;
+	height:28px;
+}
+
+.wui-toolbar li.toolbarItem.undo{
+	background-image:url(images/toolbar/undo_edit.gif);
+}
+
+.wui-toolbar li.toolbarItem.redo{
+	background-image:url(images/toolbar/redo_edit.gif);
+}
+.wui-toolbar li.toolbarItem.new{
+	background-image:url(images/toolbar/new_page.gif);
+}
+.wui-toolbar li.toolbarItem.open{
+	background-image:url(images/toolbar/open.gif);
+}
+.wui-toolbar li.toolbarItem.save{
+	background-image:url(images/toolbar/save.gif);
+}
+.wui-toolbar li.toolbarItem.print{
+	background-image:url(images/toolbar/print_edit.gif);
+}
+.wui-toolbar li.toolbarItem.help{
+	background-image:url(images/toolbar/help.gif);
+}
+.wui-toolbar li.toolbarItem.cut{
+	background-image:url(images/toolbar/cut.png);
+}
+.wui-toolbar li.toolbarItem.delete{
+	background-image:url(images/toolbar/delete.png);
+}
+.wui-toolbar li.toolbarItem.check{
+	background-image:url(images/toolbar/check.png);
+}
+.wui-toolbar li.toolbarItem.copy{
+	background-image:url(images/toolbar/copy.png);
+}
+.wui-toolbar li.toolbarItem.paster{
+	background-image:url(images/toolbar/paster.png);
+}
+.wui-toolbar li.toolbarItem.palatte{
+	background-image:url(images/toolbar/palatte.png);
+}
+.wui-toolbar li.toolbarItem.group{
+	background-image:url(images/toolbar/group.png);
+}
+.wui-toolbar li.toolbarItem.unGroup{
+	background-image:url(images/toolbar/unGroup.png);
+}
+.wui-toolbar li.toolbarItem.import{
+	background-image:url(images/toolbar/import.png);
+}
+.wui-toolbar li.toolbarItem.export{
+	background-image:url(images/toolbar/export.png);
+}
+
+   
+   
+   .diagram{background-image:url(images/bg.png);z-index: 90; position: relative; height: 700px;}
+
+

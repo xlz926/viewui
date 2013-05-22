@@ -1,0 +1,147 @@
+@CHARSET "UTF-8";
+
+
+
+.taskbar, .taskbar li, .taskbar li.taskbutton {
+    background: url("images/taskbar.png") no-repeat scroll 0 0 transparent;
+}
+
+.taskbar .close, .taskbar .restore, .taskbar .minimize {
+    background: url("images/taskbar_icon.png") no-repeat scroll 0 0 transparent;
+}
+.taskbar {
+    background-color: #112746;
+    background-repeat: repeat-x;
+    border-color: #0F3255;
+    border-style: solid;
+    border-width: 0;
+    height: 30px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+    bottom: 0px;
+    width:100%;
+    display: none;
+}
+.taskbar .taskbarContent {
+    display: block;
+    height: 29px;
+    overflow: hidden;
+    position: relative;
+}
+.taskbar .taskbarMargin {
+    margin: 0 20px;
+}
+.taskbar ul {
+    position: absolute;
+    width: 10000px;
+}
+.taskbar li {
+    background-position: 0 -50px;
+    cursor: pointer;
+    float: left;
+    height: 27px;
+    margin-left: 2px;
+    padding-left: 5px;
+    position: relative;
+}
+.taskbar li a.taskbutton {
+    background-position: 100% -100px;
+    display: block;
+    float: left;
+    height: 27px;
+    overflow: hidden;
+}
+.taskbar li a.taskbutton {
+    background-position: 3px -42px;
+    display: block;
+    height: 27px;
+    line-height: 29px;
+    overflow: hidden;
+    padding: 0 15px 0 2px;
+    width: 80px;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.taskbar li a.taskbutton>span{
+	padding-left: 5px;
+	 overflow: hidden;
+    padding-left: 5px;
+    text-overflow: ellipsis;
+}
+.taskbar .selected {
+    background-position: 0 -250px;
+}
+.taskbar .selected .taskbutton {
+    background-position: 100% -300px;
+}
+.taskbar .hover {
+    background-position: 0 -150px;
+}
+.taskbar .hover .taskbutton {
+    background-position: 100% -200px;
+}
+.taskbar .close, .taskbar .restore, .taskbar .minimize {
+    display: block;
+    height: 11px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-indent: -1000px;
+    top: 5px;
+    width: 11px;
+}
+.taskbar .close {
+    right: 3px;
+}
+.taskbar .closeHover {
+    background-position: 0 -50px;
+}
+.taskbar .restore {
+    background-position: 0 -100px;
+    right: 14px;
+}
+.taskbar .restoreHover {
+    background-position: 0 -150px;
+}
+.taskbar .minimize {
+    background-position: 0 -200px;
+    right: 14px;
+}
+.taskbar .minimizeHover {
+    background-position: 0 -250px;
+}
+.taskbar .taskbarLeft, .taskbar .taskbarRight {
+    display: none;
+    height: 29px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -1000px;
+    top: 0;
+    width: 18px;
+}
+.taskbar .taskbarLeft {
+    background-position: 0 0;
+    cursor: pointer;
+    left: 2px;
+}
+.taskbar .taskbarLeftHover {
+    background-position: 0 -50px;
+}
+.taskbar .taskbarLeftDisabled {
+    background-position: 0 -100px;
+    cursor: default;
+}
+.taskbar .taskbarRight {
+    background-position: 0 -150px;
+    cursor: pointer;
+    right: 2px;
+}
+.taskbar .taskbarRightHover {
+    background-position: 0 -200px;
+}
+.taskbar .taskbarRightDisabled {
+    background-position: 0 -250px;
+    cursor: default;
+}
+

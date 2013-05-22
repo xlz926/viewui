@@ -1,0 +1,112 @@
+
+.validatebox{
+    background: none repeat scroll 0 0 #FFFCC6;
+    border: 1px solid #D2D2D2;
+    box-shadow: 1px 1px 0 #FFFFFF inset, 2px 4px 0 rgba(0, 0, 0, 0.2);
+    color: #646464;
+    font: 12px/1.125 "Microsoft Yahei",Arial,Helvetica,sans-serif;
+    padding: 8px 20px 8px 8px;
+    position: absolute;
+    -moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+.validatebox a {
+    color: #0078B6;
+}
+.validatebox .arr {
+    bottom: -12px;
+    height: 12px;
+    left: 12px;
+    overflow: hidden;
+    position: absolute;
+    width: 22px;
+}
+.validatebox .arr:before {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: rgba(0, 0, 0, 0.2) transparent transparent;
+    border-image: none;
+    border-right: 8px solid transparent;
+    border-style: solid;
+    border-width: 8px;
+    bottom: -9px;
+    content: "";
+    display: block;
+    height: 0;
+    left: 1px;
+    position: absolute;
+    width: 0;
+}
+.validatebox .arr:after {
+    background: none repeat scroll 0 0 #FFFCC6;
+    bottom: 7px;
+    content: "";
+    display: block;
+    height: 14px;
+    position: absolute;
+    transform: rotate(45deg);
+    width: 14px;
+}
+.validatebox  a.tips_close {
+    background: url("images/tips_close.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 15px;
+    position: absolute;
+    right: 1px;
+    top: 3px;
+    width: 15px;
+     background-position:-2px -35px;
+}
+.validatebox  a:hover.tips_close {
+    display: block;
+    height: 15px;
+    position: absolute;
+    right: 1px;
+    top: 3px;
+    width: 15px;
+    background-position:-2px -17px;
+
+}
+.validatebox .va_tips_err {
+    vertical-align: middle;
+}
+.validatebox .va_sp_txt {
+    color: #FF0000;
+    margin-left: 3px;
+    vertical-align: middle;
+    float:left;
+}
+.va_tips_ok, .va_tips_err, .va_tips_warn, .va_tips_ques, .va_tips_num, .va_tips_numWarn {
+    background: url("images/icon_tips.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    vertical-align: middle;
+   float:left;
+}
+.va_tips_ok, .va_tips_err, .va_tips_warn, .va_tips_ques {
+    height: 16px;
+    width: 16px;
+}
+.va_tips_ok {
+    background-position: -11px -67px;
+}
+.va_tips_err {
+    background-position: -67px -67px;
+}
+.va_tips_warn {
+    background-position: -124px -67px;
+}
+.va_tips_ques {
+    background-position: -181px -67px;
+}
+.va_tips_num, .va_tips_numWarn {
+    color: #FFFFFF;
+    font: 18px/36px Georgia,Constantia;
+    text-align: center;
+}
+
+
+
+

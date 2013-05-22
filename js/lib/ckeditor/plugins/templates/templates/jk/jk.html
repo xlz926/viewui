@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>审核信息通知</title>
+<style>
+.mainImfo,.detailImfo {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+}
+
+.mainImfo .tdlight1 {
+	background-color: #DBEAF9;
+	text-align: left;
+	width: 75px;
+}
+
+.mainImfo .tdlight2 {
+	text-align: left;
+	width: 170px;
+}
+
+.detailImfo .first {
+	background-color: #DBEAF9;
+}
+
+.detailImfo td {
+	min-width: 26px;
+}
+</style>
+</head>
+<body>
+	<div>&nbsp;</div>
+	<table id="Table1" style="width: 100%;">
+		<tbody>
+			<tr>
+				<td height="300"><div align="center">
+						<table bgcolor="#f2f2f2" border="0" cellpadding="0"
+							cellspacing="1" class="ke-zeroborder" height="240" id="Table3"
+							width="600">
+							<tbody>
+								<tr>
+									<td bgcolor="white" height="15" valign="top"><div
+											align="center">
+											<img float:=""
+												src="${emailAuditUrl}/themes/img/img_poushenglogo.gif" />
+										</div></td>
+								</tr>
+								<tr>
+									<td bgcolor="#f2f2f2" height="242" valign="top">
+										<div align="center">
+											<table border="0" cellpadding="0" cellspacing="0"
+												class="ke-zeroborder" id="Table4" width="90%">
+												<tbody>
+													<tr>
+														<td height="25">&nbsp;</td>
+													</tr>
+													<tr>
+														<td align="center"><b><span>审核信息通知</span></b></td>
+													</tr>
+													<tr>
+														<td align="left" width="100%"><br /> <b>${act_taskUserDisplayName}</b>,您好：<br />
+															<b>${pi_defName}</b>单据名称:<b>${pi_procInstName}</b>需要您的意见,请予处理!<br />
+															<br /> 详细如下：</td>
+													</tr>
+													<tr>
+														<td>
+															<div align="center">
+																<table id="Table4" class="ke-zeroborder" border="0"
+																	cellpadding="0" cellspacing="0" width="508">
+																	<tbody>
+																		<tr>
+																			<td height="15"></td>
+																		</tr>
+																		<tr>
+																			<td>
+																				<table class="mainImfo" style="width: 100%;">
+																					<tr>
+																						<td class="tdlight1">单据编号:</td>
+																						<td class="tdlight2">${finBorrowingMasterVo.billNo}</td>
+																						<td class="tdlight1">申请部门:</td>
+																						<td class="tdlight2">${finBorrowingMasterVo.applyOrgName}</td>
+																					</tr>
+																					<tr>
+																						<td class="tdlight1">申请人:</td>
+																						<td class="tdlight2">${finBorrowingMasterVo.applyName}</td>
+																						<td class="tdlight1">职务:</td>
+																						<td class="tdlight2">${finBorrowingMasterVo.duty}</td>
+																					</tr>
+																					<tr>
+																						<td class="tdlight1">借款金额:</td>
+																						<td class="tdlight2">${finBorrowingMasterVo.borrowAmount!0}</td>
+																						<td class="tdlight1">预计还款日:</td>
+																						<td class="tdlight2">${(finBorrowingMasterVo.expectedReplayDate?date)?string("yyyy年MM月dd日")}</td>
+																					</tr>
+																					<tr>
+																						<td class="tdlight1">借款事由:</td>
+																						<td class="tdlight2" colspan="3">${finBorrowingMasterVo.borrowReason}</td>
+																					</tr>
+																					<tr>
+																						<td class="tdlight1">备注:</td>
+																						<td class="tdlight2" colspan="3">${finBorrowingMasterVo.remark}</td>
+																					</tr>
+																				</table>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td height="15"></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td height="20"><br /></td>
+													</tr>
+													<tr>
+														<td style="text-align:center;">
+															<a style="padding:0 50px;" href="${emailAuditUrl}/form/emailaudit/agree?serCode=${serCode}&amp;taskId=${taskID}&amp;billNo=${billNo}&amp;state=${flowAction}&amp;userId=${userID}">同意</a>
+															<a style="padding:0 50px;" href="${emailAuditUrl}/form/emailaudit/disagree?serCode=${serCode}&amp;taskId=${taskID}&amp;billNo=${billNo}&amp;state=${flowAction}&amp;userId=${userID}">驳回</a>
+														</td>
+													</tr>
+													<tr>
+														<td height="20"><br /></td>
+													</tr>
+													<tr>
+														<td align="left" width="100%">
+															单据详细：${pi_procInstName} <b><a
+																href="${emailAuditUrl}/index?billNo=${billNo}&amp;taskId=${taskID}&amp;isReject=${isReject}">登陆系统处理</a></b>
+														</td>
+													</tr>
+													<tr>
+														<td align="left" width="100%">注:系统邮件,请勿直接回复!</td>
+													</tr>
+													<tr>
+														<td align="right" width="100%">BPMS管理员</td>
+													</tr>
+													<tr>
+														<td align="right" width="100%">${(pi_getDate?date)?string("yyyy年MM月dd日")}</td>
+													</tr>
+													<tr>
+														<td height="15"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

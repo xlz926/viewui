@@ -288,7 +288,7 @@
 				opts.height = $( this ).height();
 				opts.width = $( this ).width();
 				that._trigger( "resizeStop", event, filteredUi( ui ) );
-				$( this ).removeClass( "ui-modal-resizing" ).find(".modal-body").width("auto").height("auto");
+				$( this ).removeClass( "ui-modal-resizing" ).find(".modal-body");
 			}
 		})
 		.css( "position", position )

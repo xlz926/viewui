@@ -51,7 +51,7 @@
 
         
         if (opts.showPageList) {
-            var selectedItem = $('<input  style="width:20px;height:18px; margin-top:-0.3em"/>').val(opts.pageList[0]);
+            var selectedItem = $('<input  style="width:20px;height:18px;"/>').val(opts.pageList[0]);
 			selectedItem.appendTo(this.element).spinner({
 									step : 10,
 									max : 50,
@@ -62,32 +62,13 @@
 									}
 								});
             
-          /*  var up = $(' <i class="icon-chevron-up perPage"></i>');
-            var down = $(' <i class="icon-chevron-down perPage"></i>');
-            opts.selectlist.append(selectedItem).appendTo(target);
-            opts.selectlist.append($('<span class="add-on spinner"/>').append(up).append(down));
-            
-            //绑定切换事件
-            up.click(function(){
-                var index = $.inArray(parseInt(selectedItem.val()), opts.pageList);
-                index = index >= 0 && opts.pageList.length - 1 <= index ? 0 : index + 1;
-                opts.pageSize = opts.pageList[index];
-                selectedItem.val(opts.pageList[index]);
-                that._selectPage(target, opts.pageNumber);
-            });
-            down.click(function(){
-                var index = $.inArray(parseInt(selectedItem.val()), opts.pageList);
-                index = index <= 0 ? opts.pageList.length - 1 : index - 1;
-                opts.pageSize = opts.pageList[index];
-                selectedItem.val(opts.pageList[index]);
-                that._selectPage(target, opts.pageNumber);
-            });*/
+
         }
 
        this.opts.holder.appendTo(target);
        that._setNav(target);
        if(opts.showPageList){
-	   	   var  Go =$("<span class='input-append go'></span>"),
+	   	   var  Go =$("<span class='input-append go' style='float: right;'></span>"),
 		   goInput=$("<input  type='text' class='input-mini'>"),
 		   goBtn=$("<span class='add-on'>Go</span>");
 		   Go.append(goInput).append(goBtn).appendTo(target);

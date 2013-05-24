@@ -257,3 +257,17 @@
 .datagrid-body .datagrid-editable .datagrid-editable-input {
   border-color: #D4D4D4;
 }
+
+.toolSearch  .form-search  
+{
+    display: inline-block;
+    margin: 3px 0;
+    width: 100%;}
+.toolSearch > .form-search > ul{
+   list-style: none outside none;
+  }
+.toolSearch > .form-search > ul > li {
+    float: left;
+    line-height: 20px;
+    width: 290px;
+}

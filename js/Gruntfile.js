@@ -43,7 +43,7 @@ module.exports = function (grunt) {
                        'date',
                        'scrollspy'
                       ].map(function( file ) {
-		return "pousheng/ui/pousheng." + file + ".js";
+		return "src/ui/pousheng." + file + ".js";
 	});
    
 
@@ -55,11 +55,11 @@ module.exports = function (grunt) {
         concat:{
         	css:{
         		src: cssFiles,
-			    dest: "pousheng/themes/default/pousheng.css"
+			    dest: "src/themes/default/pousheng.css"
         	},
         	ui:{
         		src:poushengFile,
-        		dest:"pousheng/pousheng.ui.js"
+        		dest: "src/view.ui.js"
         	}
         },
         uglify:{
@@ -67,20 +67,20 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'pousheng/pousheng.ui.js',
-                dest: 'dist/pousheng/pousheng.ui.min.js'
+                src: 'src/jQuery.view.ui.js',
+                dest: 'dist/view.ui.min.js'
             }
         },
         copy: {
 			  main: {
 			    files: [{
 			    	  expand: true,cwd: 'viewui/lib/',
-			    	  src: libFiles, 
-			    	  dest: 'release/lib',
+			    	  src: libFiles,
+			    	  dest: 'dist/release/lib',
 			    	  filter: 'isFile'},{
-			    	  expand: true,cwd: 'pousheng/',
-			    	   src: ["pousheng.ui.js","themes/**"],
-			    	   dest: 'dist/release/pousheng'
+			    	  expand: true,cwd: 'src/',
+			    	  src: ["view.ui.js", "themes/**"],
+			    	  dest: 'dist/release/view'
 			    	  }
 			    ]
 			  }

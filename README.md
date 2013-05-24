@@ -1,5 +1,5 @@
 概述：
- 此项目为web前端应用程序框架，基于jQurey ui 的widget工厂方式进行扩展。
+ 此项目为web前端应用程序框架，能够应用于java .net 等开发环境中，基于jQurey ui 的widget工厂方式进行扩展。
  参考的项目有：
           jquery ui
           easyui

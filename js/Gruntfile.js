@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 		"tabs",
 		"validatebox"
 	].map(function( component ) {
-		return "pousheng/themes/default/" + component + ".css";
+		return "src/themes/default/" + component + ".css";
 	});
    
    var poushengFile =['util',
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
                        'date',
                        'scrollspy'
                       ].map(function( file ) {
-		return "src/ui/pousheng." + file + ".js";
+		return "src/ui/viewui." + file + ".js";
 	});
    
 
@@ -68,19 +68,15 @@ module.exports = function (grunt) {
             },
             build: {
                 src: 'src/jQuery.view.ui.js',
-                dest: 'dist/view.ui.min.js'
+                dest: 'dist/jQuery.view.ui.min.js'
             }
         },
         copy: {
 			  main: {
 			    files: [{
-			    	  expand: true,cwd: 'viewui/lib/',
-			    	  src: libFiles,
-			    	  dest: 'dist/release/lib',
-			    	  filter: 'isFile'},{
 			    	  expand: true,cwd: 'src/',
-			    	  src: ["view.ui.js", "themes/**"],
-			    	  dest: 'dist/release/view'
+			    	  src: ["jQuery.view.ui.min.js", "themes/**"],
+			    	  dest: 'dist/view'
 			    	  }
 			    ]
 			  }

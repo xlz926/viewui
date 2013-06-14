@@ -1,0 +1,163 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" ResponseEncoding="UTF-8" Src="" Inherits="" Debug="False" CompilerVersion="v3.5" Description="Template description here." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the object is based on." %>
+<%@ Property Name="Package" Type="System.String" Default="" Category="Text" Description="Namespace for this class" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+package <%= Package%><%= Package %>.model;
+
+
+import java.util.Date;
+
+public class  <%= GetEntityName(SourceTable)%> 
+{
+    private static final long serialVersionUID = 1L;
+
+       <% foreach (ColumnSchema column in SourceTable.Columns) { %>
+            <%= GetMemberVariableDeclarationStatement("private",column) %>
+        <% } %>
+
+
+
+		<% for (int i = 0; i < SourceTable.Columns.Count; i++) { %>
+            /**
+            *set <%=SourceTable.Columns[i].Description %>
+            */
+            public <%= GetCSharpVariableType(SourceTable.Columns[i]) %> get<%= GetColumnClassName(SourceTable.Columns[i]) %>()
+            {
+                return <%= GetMemberVariableName(SourceTable.Columns[i]) %>; 
+            }
+            /**
+            *get<%=SourceTable.Columns[i].Description %>
+            */
+            public void set<%= GetColumnClassName(SourceTable.Columns[i]) %>(<%= GetCSharpVariableType(SourceTable.Columns[i]) %> <%= GetMemberVariableName(SourceTable.Columns[i])%>)
+            {
+                this.<%= GetMemberVariableName(SourceTable.Columns[i]) %> =<%= GetMemberVariableName(SourceTable.Columns[i])%>;
+            }
+        <% if (i < SourceTable.Columns.Count - 1) Response.Write("\r\n"); %>	
+		<%}%>
+}
+<script runat="template">
+
+/// <summary>
+///  获取字段数据库对应的类型
+/// </summary>
+/// <returns></returns>
+public string GetCSharpVariableType(ColumnSchema column)
+{
+	if (column.Name.EndsWith("TypeCode")) 
+    {
+        return column.Name;
+    }
+	
+	switch (column.DataType)
+	{
+	    case DbType.AnsiString: return "String";
+		case DbType.AnsiStringFixedLength: return "String";
+		case DbType.Binary: return "Byte[]";
+		case DbType.Boolean: return "Boolean";
+		case DbType.Byte: return "Byte";
+		case DbType.Currency: return "Double";
+		case DbType.Date: return "Date";
+		case DbType.DateTime: return "Date";
+		case DbType.Decimal: return "Double";
+		case DbType.Double: return "Double";
+		case DbType.Int16: return "Short";
+		case DbType.Int32: return "Integer";
+		case DbType.Int64: return "Long";
+		case DbType.Object: return "Object";
+		case DbType.SByte: return "Byte";
+		case DbType.Single: return "Float";
+		case DbType.String: return "String";
+		case DbType.StringFixedLength: return "String";
+		case DbType.Time: return "Date";
+		case DbType.UInt16: return "Short";
+		case DbType.UInt32: return "Integer";
+		case DbType.UInt64: return "Long";
+		case DbType.VarNumeric: return "Double";
+		default:
+		{
+			return "__UNKNOWN__" + column.NativeType;
+		}
+	}
+}
+/// <summary>
+///  设置属性方法
+/// </summary>
+/// <param name="protectionLevel">封装级别</param>
+/// <param name="column">字段</param>
+/// <returns></returns>
+public string GetMemberVariableDeclarationStatement(string protectionLevel, ColumnSchema column)
+{
+    string statement = protectionLevel + " ";
+    
+	statement += GetCSharpVariableType(column) + " " + GetMemberVariableName(column);
+	
+	statement += ";";
+	
+	return statement;
+}
+ 
+/// <summary>
+///  获取字段名称(pasal命名风格)
+/// </summary>
+/// <param name="column">字段</param>
+/// <returns></returns>
+public string GetMemberVariableName(ColumnSchema column)
+{
+    string[] fnl=column.Name.Split('_');
+
+    if(fnl.Length==1)
+	    return column.Name.ToLower();
+	else
+    {
+        string fn=string.Empty;
+        fn=fnl[0].ToLower();
+        for(int i=1;i<fnl.Length;i++){
+            fn+=GetPasalCaseName(fnl[i]);
+        }
+        return fn;
+    }
+}
+public string GetPasalCaseName(string value)
+{
+	return value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower();
+}
+
+
+/// <summary>
+///  获取字段类名称(pasal命名风格)
+/// </summary>
+/// <param name="column">字段</param>
+/// <returns></returns>
+public string GetColumnClassName(ColumnSchema column)
+{
+    string[] fnl=column.Name.Split('_');
+
+    if(fnl.Length==1)
+	    return GetPasalCaseName(column.Name);
+	else
+    {
+        string fn=string.Empty;
+        for(int i=0;i<fnl.Length;i++){
+            fn+=GetPasalCaseName(fnl[i]);
+        }
+        return fn;
+    }
+}      
+        
+public string GetEntityName(TableSchema table)
+{
+    return table.Name.Substring(0,1).ToUpper() + table.Name.Substring(1);
+}
+public string test(TableSchema table)
+{
+    return "fdfdfdfdfdf";	
+}
+</script>

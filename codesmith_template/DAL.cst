@@ -1,0 +1,22 @@
+<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="" Inherits="" Debug="False" CompilerVersion="v3.5" Description="Template description here." %>
+<%@ Property Name="SampleStringProperty" Type="System.String" Default="SomeValue" Optional="True" Category="Strings" Description="This is a sample string property." %>
+<%@ Property Name="SampleBooleanProperty" Type="System.Boolean" Default="True" Optional="False" Category="Booleans" Description="This is a sample boolean property." %>
+My static content here.
+My dynamic content here: "<%= SampleStringProperty %>"
+Call a script method: <%= SampleMethod() %>
+<% if (SampleBooleanProperty) { %>
+My conditional content here.
+<% } %>
+<script runat="template">
+// My methods here.
+
+public string SampleMethod()
+{
+	return "Method output.";
+}
+</script>

@@ -89,6 +89,13 @@
     $(function () {
         $("#datagridDemo").basegrid();
         console.log($("#datagridDemo").is("div"));
+
+        var person = {
+            value: "测试"
+        }
+        console.log(person);
+        delete person.value;
+        console.log(person);
     })
 
 </script>

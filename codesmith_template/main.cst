@@ -1,0 +1,152 @@
+﻿<%-- 
+Name: activiti-demo
+Author: liezun.xiao
+Description:  demo
+--%>
+<%@ CodeTemplate Language="C#" ResponseEncoding="UTF-8" TargetLanguage="C#" Src="" Inherits="" Debug="True" CompilerVersion="v3.5" Description="Template description here." %>
+
+<%@ Property Name="SourceDatabase" Type="SchemaExplorer.DatabaseSchema" Category="Context" Description="数据库源" %> 
+<%@ Property Name="ExcludedTables" Type="SchemaExplorer.TableSchemaCollection" Optional="True" Category="b.Database Options" Description="选择需要执行的表" Filter="SourceTable"%>
+<%@ Property Name="Package" Type="System.String" Default="activti.demo" Optional="False" Category="a.项目信息" Description="包名称" %>
+<%@ Property Name="TablePrefix" Type="System.String" Default="act_" Optional="False" Category="a.项目信息" Description="表前缀" %>
+<%@ Property Name="SrcDir" Type="System.String" Default="F:\"   Optional="True" Category="c.Output Dir" Description="项目保存地址" %>
+
+
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import NameSpace="SchemaExplorer" %>
+<%@ Import NameSpace="System.Data" %>
+<%@ Import NameSpace="System.IO" %>
+
+
+<%@ Register Name="Model" Template="model.cst" %>
+
+<%@ Register Name="Mapper" Template="mapper.cst" %>
+
+
+<%
+    if(SourceDatabase != null)
+    {     
+        Response.WriteLine("输出开始.......");
+        foreach(TableSchema table in ExcludedTables)//
+        {
+            RenderModel(table);
+            RenderMapper(table);
+        }
+        
+        Response.WriteLine("全部已经输出成功");
+
+    }
+%>
+<script runat="template">
+
+
+[Editor(typeof(System.Windows.Forms.Design.FolderNameEditor), typeof(System.Drawing.Design.UITypeEditor))]
+///dfdfdfdf
+public string OutputDirectory
+{
+      get {return SrcDir;}
+      set {SrcDir= value;}
+}
+
+private void RenderModel(TableSchema table)
+{
+	string fileName = String.Format("{0}/model/{1}.java", GetFolder(Package), GetClassName(table));
+	
+	Model pojo = this.Create<Model>();
+	pojo.Package = this.Package;
+	pojo.SourceTable = table;
+	pojo.RenderToFile(GetOutputFile(fileName, null, "BuildAction", 3), true);
+    Response.WriteLine( pojo.test(table));
+   Response.WriteLine(string.Format("已经完成 表 {0}  的 model 输出",table.Name));	
+}
+
+private void RenderMapper(TableSchema table)
+{
+	string fileName = String.Format("{0}/mapper/{1}.xml", GetFolder(Package), GetClassName(table));
+	
+	Model pojo = this.Create<Model>();
+	pojo.Package = this.Package;
+	pojo.SourceTable = table;
+	pojo.RenderToFile(GetOutputFile(fileName, null, "BuildAction", 3), true);
+   Response.WriteLine(string.Format("已经完成 表 {0}  的 mappper 输出",table.Name));	
+}
+
+private OutputFile GetOutputFile(string fileName, string dependentUpon, params object[] metaData)
+{
+	OutputFile outputFile = new OutputFile(fileName);
+	
+	if(!String.IsNullOrEmpty(dependentUpon))
+		outputFile.DependentUpon = Path.GetFullPath(dependentUpon);
+	
+	if(metaData.Length % 2 != 0)
+		throw new Exception("Invalid Metadata: Provide 2 objects per entry, a String (key) followed by an Object.");
+	for(int x=0; x<metaData.Length; x+=2)
+    	outputFile.Metadata.Add(metaData[x].ToString(), metaData[x+1]);
+		
+	return outputFile;
+}
+
+
+private string GetPageName(TableSchema table)
+{
+    string pn=table.Name;
+    pn=pn.Replace(TablePrefix,"").ToLower();
+    
+    return pn;
+}
+
+
+
+private string GetClassName(TableSchema table)
+{   /*
+    if(TablePrefix!= null && table.Name.StartsWith(this.TablePrefix))    
+        return table.Name.Remove(0,this.TablePrefix.Length);
+    else
+        return table.Name;
+     */
+    
+    if(table==null)
+	{
+	    return null;
+	}
+    string[] fnl=table.Name.Split('_');
+
+    if(fnl.Length==1)
+	    return GetPasalCaseName(table.Name);
+	else
+    {
+        string fn=string.Empty;
+        for(int i=0;i<fnl.Length;i++){
+            fn+=GetPasalCaseName(fnl[i]);
+        }
+        return fn;
+    }
+}
+private string GetFolder(string pack)
+{
+	//if (folder.Contains(".") && !folder.EndsWith("."))
+    //    folder = folder.Substring(folder.LastIndexOf('.')+1);
+
+    string folder = Path.Combine(SrcDir,pack.Replace(".","/"));
+    
+    //folder=SrcDir;
+    
+	if(String.IsNullOrEmpty(folder))
+		folder = String.Empty;
+	else
+	{
+		if (!Directory.Exists(folder))
+            Directory.CreateDirectory(folder);
+			
+		if (!folder.EndsWith("\\"))
+			folder = String.Format("{0}\\", folder);
+	}
+    
+	return folder;
+}
+public string GetPasalCaseName(string value)
+{
+	return value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower();
+}
+
+</script>

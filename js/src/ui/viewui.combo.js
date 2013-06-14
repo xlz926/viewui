@@ -21,12 +21,12 @@
         _create: function () {
            this.element.data(this.widgetName,this._wrapCombo());
            this._setSize(); 
-
+           this._bindEvents();
 
         },
         _wrapCombo:function(){
             this.element.hide();
-            var span = $('<span class="combo"></span>').insertAfter(target);
+            var span = $('<span class="combo"></span>').insertAfter(this.element);
 		    var input = $('<input type="text" class="combo-text">').appendTo(span);
 
 		    $('<span><span class="combo-arrow"></span></span>').appendTo(span);
@@ -94,15 +94,14 @@
 		    arrow.unbind('.'+this.widgetName);
 
             if (!opts.disabled){
-			    $(document).bind('mousedown.'+this.widgetName, function(e){
-				    $('div.combo-panel').panel('close');
-			    });
 			    panel.bind('mousedown.'+this.widgetName, function(e){
 				    return false;
 			    });
 			
-			    input.bind('focus.'+this.widgetName, function(){
-				    showPanel(target);
+			    input.bind('focus.'+this.widgetName, function(e){
+                   e.stopPropagation();   
+				   that.showPanel();
+                   console.log(312);
 			    }).bind('mousedown.'+this.widgetName, function(e){
 				    e.stopPropagation();
 			    }).bind('keyup.'+this.widgetName, function(e){
@@ -119,19 +118,23 @@
 						   that._trigger("selectCurr",e,that.element[0]);
 						    break;
 					    case keyCode.ESCAPE:	// esc
-						    hidePanel(target);
+						    that.hidePanel();
 						    break;
 					    default:
 						    if (opts.editable){
 							    opts.filter.call(target, $(this).val());
-
 						    }
 				    }
 				    return false;
-			    });
+			    }).bind('blur',function(e){
+                  e.stopPropagation(); 
+                  panel.panel('close');
+                  
+                });
 			
-			    arrow.bind('click.'+this.widgetName, function(){
-				    input.focus();
+			    arrow.bind('click.'+this.widgetName, function(e){
+                   e.stopPropagation(); 
+				    input.triggerHandler('focus');
 			    }).bind('mouseenter.'+this.widgetName, function(){
 				    $(this).addClass('combo-arrow-hover');
 			    }).bind('mouseleave.'+this.widgetName, function(){
@@ -154,9 +157,9 @@
 		    if ($.viewui){
 			    panel.panel('panel').css('z-index', $.viewui.zIndex++);
 		    }
-		
-		    panel.panel('open');
-		
+			
+           panel.panel('open');
+    
 		    (function(){
 			    if (panel.is(':visible')){
 				    var top = combo.offset().top + combo.outerHeight();
@@ -170,7 +173,7 @@
 					    left:combo.offset().left,
 					    top:top
 				    });
-				    setTimeout(arguments.callee, 200);
+				  //  setTimeout(arguments.callee, 200);
 			    }
 		    })();
 

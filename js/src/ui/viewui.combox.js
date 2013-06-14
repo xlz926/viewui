@@ -27,7 +27,7 @@
             if(this.element.is("select")){
                 this.element.data(this.widgetName,this.transformData());
             }
-            this.loadData();
+            this.loadData(this.transformData());
 
         },
          /**
@@ -98,7 +98,7 @@
         select:function(value){
             var opts = this.options,
                 that = this;
-		        data = this.element.data(this.widgetName).data;
+		        data = this.element.data(this.widgetName);
 		
 		    if (opts.multiple){
 			    var values = this.element.combo('getValues');
@@ -106,9 +106,9 @@
 				    if (values[i] == value) return;
 			    }
 			    values.push(value);
-			    that.setValues(target, values);
+			    that.setValues( values);
 		    } else {
-			    that.setValues(target, [value]);
+			    that.setValues([value]);
 			    this.element.combo('hidePanel');
 		    }
 		
@@ -129,7 +129,7 @@
 		    for(var i=0; i<values.length; i++){
 			    if (values[i] == value){
 				    values.splice(i, 1);
-				    this.setValues(target, values);
+				    this.setValues(values);
 				    break;
 			    }
 		    }
@@ -145,7 +145,7 @@
 	     */
         setValues:function(values, remainText){
             var opts =this.options,
-                data = this.element.data(this.widgetName).data,
+                data = this.element.data(this.widgetName),
                 target =this.element;
 
             var panel = this.element.combo('panel');
@@ -176,13 +176,16 @@
 	     *获取值
 	     */
         getValues:function(){
+
         
         },
         setValue:function(){
 
+
         },
         getValue:function(){
         
+
         
         },
         /**
@@ -193,9 +196,9 @@
 
         },
         transformData:function(){
-        	var opts = $.data(target, 'combobox').options;
+        	var opts = this.options;
 		    var data = [];
-		    $('>option', target).each(function(){
+		    $('>option', this.element).each(function(){
 			    var item = {};
 			    item[opts.valueField] = $(this).attr('value') || $(this).html();
 			    item[opts.textField] = $(this).html();
@@ -203,7 +206,7 @@
 			    data.push(item);
 		    });
 		    return data;
-        }
+        },
         /**
 	     *加载数据项
 	     */
@@ -214,7 +217,6 @@
 		        panel = this.element.combo('panel');
 		
 		    target.data(this.widgetName,data);
-		
 		    var selected = [];
 		    panel.empty();	// clear old data
 		    for(var i=0; i<data.length; i++){
@@ -235,8 +237,7 @@
 			    }
 		    }
 		
-		    opts.onLoadSuccess.call(target, data);
-            that._trigger("onLoadSuccess",nul,data);
+            that._trigger("onLoadSuccess",null,data);
 		
 		    $('.combobox-item', panel).hover(
 			    function(){$(this).addClass('combobox-item-hover');},

@@ -107,7 +107,7 @@
 
         },
         _setSize: function (target, param) {
-            var opts = $.data(target, 'panel').options;
+            var opts = this.options;
             var panel = $.data(target, 'panel').panel;
             var pheader = panel.find('>div.panel-header');
             var pbody = panel.find('>div.panel-body');
@@ -178,11 +178,12 @@
                    // pbody.height(panel.height() - pheader.outerHeight());
 
                    // panel.height(opts.height - (panel.outerHeight() - panel.height()));
-                    pbody.height(opts.height  - pheader.outerHeight() - (pbody.outerHeight() - pbody.height()));
+                    pbody.height(opts.height  - pheader.outerHeight() - (pbody.outerHeight() - pbody.height())-(panel.outerHeight(true) - panel.innerHeight()));
                 }
             } else {
                 pbody.height('auto');
             }
+         
             panel.css('height', 'auto');
 
             opts.onResize.apply(target, [opts.width, opts.height]);

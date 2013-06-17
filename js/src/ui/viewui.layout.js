@@ -1,7 +1,7 @@
 ﻿(function ($) {
     $.widget("ui.layout", {
         options: {
-        	fit:true
+        	fit:false
     },
     _create: function () {
         $.data(this.element, 'layout', {
@@ -13,14 +13,14 @@
     },
     _setSize: function (container) {
         var that = this;
-        var opts = $.data(container, 'layout').options;
+        var opts = this.options;
         var panels = $.data(container, 'layout').panels;
 
         var cc = $(container);
 
         if (opts.fit == true) {
             var p = cc.parent();
-            cc.width(p.width()).height(p.height());
+            cc.width(p.innerWidth()).height(p.innerHeight());
         }
 
         var cpos = {
@@ -34,13 +34,13 @@
         function setNorthSize(pp) {
             if (pp.length == 0) return;
             pp.panel('resize', {
-                width: cc.width(),
-                height: pp.panel('getOptions').height,
+                width: cc.innerWidth(),
+                height: pp.panel('option','height'),
                 left: 0,
                 top: 0
             });
-            cpos.top += pp.panel('getOptions').height;
-            cpos.height -= pp.panel('getOptions').height;
+            cpos.top += pp.panel('option', 'height');
+            cpos.height -= pp.panel('option', 'height');
         }
         if (that._isVisible(panels.expandNorth)) {
             setNorthSize(panels.expandNorth);
@@ -53,11 +53,11 @@
             if (pp.length == 0) return;
             pp.panel('resize', {
                 width: cc.width(),
-                height: pp.panel('getOptions').height,
+                height: pp.panel('option', 'height'),
                 left: 0,
-                top: cc.height() - pp.panel('getOptions').height
+                top: cc.height() - pp.panel('option', 'height')
             });
-            cpos.height -= pp.panel('getOptions').height;
+            cpos.height -= pp.panel('option', 'height');
         }
         if (that._isVisible(panels.expandSouth)) {
             setSouthSize(panels.expandSouth);
@@ -69,12 +69,12 @@
         function setEastSize(pp) {
             if (pp.length == 0) return;
             pp.panel('resize', {
-                width: pp.panel('getOptions').width,
+                width: pp.panel('option', 'width'),
                 height: cpos.height,
-                left: cc.width() - pp.panel('getOptions').width,
+                left: cc.width() - pp.panel('option', 'width'),
                 top: cpos.top
             });
-            cpos.width -= pp.panel('getOptions').width;
+            cpos.width -= pp.panel('option', 'width');
         }
         if (that._isVisible(panels.expandEast)) {
             setEastSize(panels.expandEast);
@@ -86,13 +86,13 @@
         function setWestSize(pp) {
             if (pp.length == 0) return;
             pp.panel('resize', {
-                width: pp.panel('getOptions').width,
+                width: pp.panel('option', 'width'),
                 height: cpos.height,
                 left: 0,
                 top: cpos.top
             });
-            cpos.left += pp.panel('getOptions').width;
-            cpos.width -= pp.panel('getOptions').width;
+            cpos.left += pp.panel('option', 'width');
+            cpos.width -= pp.panel('option', 'width');
         }
         if (that._isVisible(panels.expandWest)) {
             setWestSize(panels.expandWest);

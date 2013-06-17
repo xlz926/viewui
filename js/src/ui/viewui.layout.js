@@ -129,13 +129,13 @@
 
             var toolCls = null;
             if (dir == 'north') {
-                toolCls = 'icon-arrow-up';
+                toolCls = 'layout-button-up';
             } else if (dir == 'south') {
-                toolCls = 'icon-arrow-down';
+                toolCls = 'layout-button-down';
             } else if (dir == 'east') {
-                toolCls = 'icon-arrow-right';
+                toolCls = 'layout-button-right';
             } else if (dir == 'west') {
-                toolCls = 'icon-arrow-left';
+                toolCls = 'layout-button-left';
             }
 
             var cls = 'layout-panel layout-panel-' + dir;
@@ -209,10 +209,10 @@
 
         function createExpandPanel(dir) {
             var icon;
-            if (dir == 'east') icon = 'icon-arrow-left'
-            else if (dir == 'west') icon = 'icon-arrow-right'
-            else if (dir == 'north') icon = 'icon-arrow-down'
-            else if (dir == 'south') icon = 'icon-arrow-up';
+            if (dir == 'east') icon = 'layout-button-left'
+            else if (dir == 'west') icon = 'layout-button-right'
+            else if (dir == 'north') icon = 'layout-button-down'
+            else if (dir == 'south') icon = 'layout-button-up';
 
             return $('<div></div>').appendTo(cc).panel({
                 cls: 'layout-expand',
@@ -226,7 +226,7 @@
         // bind east panel events
         if (panels.east.length) {
             panels.east.panel('panel').bind('mouseover', 'east', collapsePanel);
-            panels.east.panel('header').find('.icon-arrow-right').click(function () {
+            panels.east.panel('header').find('.layout-button-right').click(function () {
                 panels.center.panel('resize', {
                     width: panels.center.panel('getOptions').width + panels.east.panel('getOptions').width - 28
                 });
@@ -251,7 +251,7 @@
 						function () { $(this).addClass('layout-expand-over'); },
 						function () { $(this).removeClass('layout-expand-over'); }
 					);
-                    panels.expandEast.panel('header').find('.icon-arrow-left').click(function () {
+                    panels.expandEast.panel('header').find('.layout-button-left').click(function () {
                         panels.expandEast.panel('close');
                         panels.east.panel('panel').stop(true, true);
                         panels.east.panel('open').panel('resize', { left: cc.width() });
@@ -270,7 +270,7 @@
         // bind west panel events
         if (panels.west.length) {
             panels.west.panel('panel').bind('mouseover', 'west', collapsePanel);
-            panels.west.panel('header').find('.icon-arrow-left').click(function () {
+            panels.west.panel('header').find('.layout-button-left').click(function () {
                 panels.center.panel('resize', {
                     width: panels.center.panel('getOptions').width + panels.west.panel('getOptions').width - 28,
                     left: 28
@@ -296,7 +296,7 @@
 						function () { $(this).addClass('layout-expand-over'); },
 						function () { $(this).removeClass('layout-expand-over'); }
 					);
-                    panels.expandWest.panel('header').find('.icon-arrow-right').click(function () {
+                    panels.expandWest.panel('header').find('.layout-button-right').click(function () {
                         panels.expandWest.panel('close');
                         panels.west.panel('panel').stop(true, true);
                         panels.west.panel('open').panel('resize', { left: -panels.west.panel('getOptions').width });
@@ -315,7 +315,7 @@
         // bind north panel events
         if (panels.north.length) {
             panels.north.panel('panel').bind('mouseover', 'north', collapsePanel);
-            panels.north.panel('header').find('.icon-arrow-up').click(function () {
+            panels.north.panel('header').find('.layout-button-up').click(function () {
                 var hh = cc.height() - 28;
                 if (that._isVisible(panels.expandSouth)) {
                     hh -= panels.expandSouth.panel('getOptions').height;
@@ -364,7 +364,7 @@
         // bind south panel events
         if (panels.south.length) {
             panels.south.panel('panel').bind('mouseover', 'south', collapsePanel);
-            panels.south.panel('header').find('.icon-arrow-down').click(function () {
+            panels.south.panel('header').find('.layout-button-down').click(function () {
                 var hh = cc.height() - 28;
                 if (that._isVisible(panels.expandNorth)) {
                     hh -= panels.expandNorth.panel('getOptions').height;
